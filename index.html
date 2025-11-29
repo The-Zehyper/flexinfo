@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flex City News</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  @keyframes neonPulse {
+    0% { box-shadow: 0 0 10px rgba(124,58,237,0.5); }
+    50% { box-shadow: 0 0 20px rgba(6,182,212,0.5); }
+    100% { box-shadow: 0 0 10px rgba(124,58,237,0.5); }
+  }
+  .glow { animation: neonPulse 2s ease-in-out infinite; }
+
+  @keyframes flicker {
+    0%,100% { opacity:1 }
+    50% { opacity:0.85 }
+  }
+  .flicker { animation: flicker 3s infinite; }
+</style>
+</head>
+
+<body class="bg-[#070d1f] text-slate-100">
+
+<!-- SECTION HEADER -->
+<section class="min-h-screen py-10 px-6 lg:px-20">
+
+  <!-- HEADER -->
+  <header class="flex items-center gap-4 mb-10">
+    
+    <!-- LOGO FOTO -->
+    <div class="glow p-2 rounded-2xl bg-gradient-to-br from-purple-600/20 to-cyan-400/10">
+      <div class="w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center bg-gradient-to-br from-purple-600 to-cyan-400">
+        <img src="fotoflex.jpg" alt="Flex City Logo" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <div>
+      <h1 class="text-3xl font-extrabold tracking-tight">
+        Info Resmi <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-cyan-200">Flex City</span>
+      </h1>
+      <p class="text-slate-400 text-sm">
+        Update patch, event, tournament & info penting — join Discord biar ga ketinggalan info terbaru!  
+        https://discord.gg/flexcitygame
+      </p>
+    </div>
+  </header>
+
+  <!-- GRID BERITA -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- CARD BERITA 1 -->
+    <article class="bg-[#0b152c] border border-slate-800 rounded-2xl p-6 hover:scale-[1.03] transition-all cursor-pointer shadow-xl"
+      onclick="openNews('update1')">
+      <h3 class="text-xl font-bold flicker">Update 1.6.4</h3>
+      <p class="text-slate-300 mt-3 text-sm">
+        • Apartemen pemain  
+        • Garasi  
+        • Mode baru: Custom Room  
+        • Tutorial redesign  
+        • Parkour upgrade  
+        • Reward iklan baru  
+        • Event spesial  
+        • Bug fix
+      </p>
+      <button class="mt-4 text-purple-300 underline text-sm">Baca selengkapnya</button>
+    </article>
+
+    <!-- CARD BERITA 2 -->
+    <article class="bg-[#0b152c] border border-slate-800 rounded-2xl p-6 hover:scale-[1.03] transition-all cursor-pointer shadow-xl"
+      onclick="openNews('event1')">
+      <h3 class="text-xl font-bold flicker">Flex City Event</h3>
+      <p class="text-slate-300 mt-3 text-sm">
+        Belum ada event baru untuk saat ini.
+      </p>
+      <button class="mt-4 text-purple-300 underline text-sm">Baca selengkapnya</button>
+    </article>
+
+    <!-- CARD BERITA 3 -->
+    <article class="bg-[#0b152c] border border-slate-800 rounded-2xl p-6 hover:scale-[1.03] transition-all cursor-pointer shadow-xl"
+      onclick="openNews('guide')">
+      <h3 class="text-xl font-bold flicker">Panduan Pemula</h3>
+      <p class="text-slate-300 mt-3 text-sm">
+        Cara cepat naik level dan membuat gang.
+      </p>
+      <button class="mt-4 text-purple-300 underline text-sm">Baca selengkapnya</button>
+    </article>
+
+  </div>
+</section>
+
+<!-- SECTION TENTANG GAME -->
+<section class="py-16 px-6 lg:px-20">
+  <div class="bg-[#0b152c] border border-slate-800 rounded-2xl p-8 shadow-xl">
+    
+    <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-300 to-cyan-200 bg-clip-text text-transparent">
+      Tentang Flex City
+    </h2>
+
+    <p class="text-slate-300 leading-relaxed text-sm">
+      (Flex City foto)
+    </p>
+
+    <!-- DISCORD -->
+    <div class="mt-8">
+      <a href="https://discord.gg/YOUR_LINK" target="_blank"
+        class="px-6 py-3 text-lg font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-blue-400 hover:scale-110 transition-all shadow-lg">
+         Join Discord Flex City
+      </a>
+    </div>
+
+    <!-- ===========================
+         TAMBAHAN: CAROUSEL FOTO
+         =========================== -->
+    <div class="mt-8 w-full bg-[#0b152c] border border-slate-800 rounded-2xl p-4 shadow-xl">
+
+      <div class="relative w-full h-64 overflow-hidden rounded-xl">
+        <img id="carouselImage" src="" class="w-full h-full object-cover rounded-xl" />
+
+        <!-- TOMBOL PREV -->
+        <button onclick="prevSlide()"
+          class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 p-3 rounded-full text-white">
+          ‹
+        </button>
+
+        <!-- TOMBOL NEXT -->
+        <button onclick="nextSlide()"
+          class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 p-3 rounded-full text-white">
+          ›
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- MODAL BERITA -->
+<div id="modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-[#0c182f] max-w-lg w-full rounded-2xl p-6 border border-slate-700 shadow-2xl">
+    <h2 id="modalTitle" class="text-2xl font-bold mb-3"></h2>
+    <p id="modalContent" class="text-slate-300 text-sm leading-relaxed whitespace-pre-line"></p>
+
+    <!-- FOTO DALAM MODAL -->
+    <img id="modalImage" src="" class="w-full rounded-xl mt-4 hidden" />
+
+    <button onclick="closeNews()" class="mt-6 px-4 py-2 bg-gradient-to-r from-purple-600 to-cyan-400 rounded-lg font-semibold">
+      Tutup
+    </button>
+  </div>
+</div>
+
+<script>
+  // ===========================
+  // DATA BERITA + FOTO
+  // ===========================
+  const newsData = {
+    update1: {
+      title: "Update 1.6.4",
+      content: `Update 1.6.4 menghadirkan:
+• Apartemen pemain
+• Garasi
+• Mode permainan baru: Custom Room
+• Tutorial yang didesain ulang
+• Sistem parkour ditingkatkan
+• Hadiah baru untuk iklan
+• Event spesial
+• Perbaikan bug kecil`,
+      image: "update_1.jpg"
+    },
+
+    event1: {
+      title: "Flex City Event",
+      content: `Event:
+Belum ada event baru untuk saat ini.`,
+      image: "event.jpg"
+    },
+
+    guide: {
+      title: "Panduan Pemula Flex City",
+      content: `Tips naik level lebih cepat:
+• Mulai bekerja sebagai kurir pizza  
+• Cari teman & gabung komunitas  
+• Ikuti misi kota  
+• Kumpulkan uang untuk buka gang  
+• Mulai petualangan dan grinding EXP`,
+      image: "hide.jpg"
+    }
+  };
+
+  // ===========================
+  // BUKA MODAL
+  // ===========================
+  function openNews(key) {
+    const modal = document.getElementById('modal');
+    const imgBox = document.getElementById('modalImage');
+
+    modal.classList.remove('hidden');
+    document.getElementById('modalTitle').innerText = newsData[key].title;
+    document.getElementById('modalContent').innerText = newsData[key].content;
+
+    if (newsData[key].image) {
+      imgBox.src = newsData[key].image;
+      imgBox.classList.remove('hidden');
+    } else {
+      imgBox.classList.add('hidden');
+    }
+  }
+
+  function closeNews() {
+    document.getElementById('modal').classList.add('hidden');
+  }
+
+  // ===========================
+  // CAROUSEL FOTO
+  // ===========================
+  let slideIndex = 0;
+  const slides = [
+    "ss1.jpg",
+    "ss2.jpg",
+    "ss3.jpg",
+    "ss4.jpg",
+    "ss5.jpg"
+  ];
+
+  function showSlide(i) {
+    slideIndex = (i + slides.length) % slides.length;
+    document.getElementById("carouselImage").src = slides[slideIndex];
+  }
+
+  function nextSlide() { showSlide(slideIndex + 1); }
+  function prevSlide() { showSlide(slideIndex - 1); }
+
+  window.onload = function() {
+    showSlide(0);
+  }
+</script>
+
+</body>
+</html>
