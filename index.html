@@ -29,6 +29,17 @@
   .fade {
     opacity: 0;
   }
+
+  /* FIX untuk modal agar gambar tidak mendorong tombol hilang */
+  #modalContentWrapper {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+  #modalImage {
+    max-height: 300px;
+    object-fit: cover;
+  }
 </style>
 </head>
 
@@ -113,7 +124,6 @@
 
     <p class="text-slate-300 leading-relaxed text-sm">
       RP di dunia terbuka! Roleplay. Simulator kehidupan. Mobil. Game grand. Flex City - Pengalaman Berkendara dan Balapan di Dunia Sandbox Terbaik Tantang dirimu dalam pengalaman sandbox terbaik bersama Flex City, di mana sensasi menegangkan dari game mengemudi dan balapan menjadi sorotan utama. Masuki dunia terbuka yang luas dan tentukan jalanmu dalam petualangan otomotif besar yang penuh dengan balapan mobil dan motor, kompetisi drifting, dan kehidupan kriminal berisiko tinggi. Bergabunglah dalam geng dan kuasai jalanan dalam game sandbox multipemain online ini, di mana setiap keputusan membentuk takdirmu di kota gangster yang penuh warna. FITUR GAME Perang Geng dan Aliansi Strategis: Di Flex City, perang geng bukan sekadar pertempuran jalanan; ini adalah perebutan kekuasaan yang rumit dan memerlukan pemikiran strategis serta aliansi. Bentuk atau bergabunglah dengan geng, bangun aliansi, dan navigasikan politik dunia bawah tanah dalam game sandbox multipemain yang intens ini. Rasakan serunya pertempuran wilayah dan tantangan dalam menjaga hubungan di lanskap aliansi kota gangster yang terus berubah. Dunia Terbuka yang Luas dan Dinamis: Dunia terbuka di Flex City tidak hanya luas; tetapi juga penuh dengan kehidupan dan peluang. Dari gedung pencakar langit hingga jalanan kumuh, setiap sudut dari petualangan otomotif besar ini menawarkan pertemuan unik dan penemuan menarik. Jelajahi berbagai lingkungan dengan karakter dan rahasia masing-masing, menjadikan eksplorasi sebagai bagian penting dari pengalaman game berkendara sandbox. Simulator Mengemudi yang Realistis: Simulator mengemudi di Flex City dirancang dengan cermat, memberikan pengalaman mengemudi mobil kelas atas. Pilih dari berbagai kendaraan, masing-masing dengan karakteristik penanganan dan performa yang unik. Kustomisasi mobilmu untuk berbagai misi, nikmati kejar-kejaran berkecepatan tinggi, atau sekadar berkendara santai di dunia terbuka. Fitur ini meningkatkan standar dalam game mengemudi, balapan, dan kompetisi drifting. Sistem Tembak-Menembak dan Pertarungan yang Canggih: Sebagai salah satu game tembak-menembak unggulan, Flex City menawarkan sistem pertarungan yang kuat. Terlibat dalam baku tembak taktis, gunakan perlindungan, dan kuasai berbagai gaya menembak. Gudang senjata dalam game ini beragam, dari pistol hingga senjata berat, masing-masing memberikan pengalaman bertarung yang unik di dunia kriminal. Kustomisasi Karakter yang Mendalam: Aspek roleplay dalam Flex City diperkaya dengan opsi kustomisasi karakter yang mendalam. Bentuk penampilan, keterampilan, dan bahkan moral karaktermu. Pilihanmu dalam pakaian, senjata, dan keterampilan secara langsung memengaruhi interaksi dan reputasimu di kota gangster, menyatu sempurna dengan elemen mengemudi dan kriminal besar dalam game. Sistem Ekonomi yang Kompleks: Sistem ekonomi di Flex City menambahkan lapisan strategi dalam petualangan otomotif besar ini. Terlibat dalam berbagai aktivitas legal maupun ilegal untuk mengembangkan kerajaan finansialmu. Berdagang, berinvestasi, dan gunakan kecerdikan ekonomimu untuk mendapatkan keunggulan di dunia kriminal. Acara Komunitas dan Misi: Game sandbox multipemain ini terus berkembang dengan acara komunitas, misi, dan tantangan baru. Ikuti misi kooperatif, bersaing dalam acara berbasis geng, dan berpartisipasi dalam aktivitas komunitas skala besar yang menyatukan pemain dengan cara yang seru. Flex City bukan sekadar game! Ini adalah dunia terbuka yang kaya dan kompleks di mana sandbox, mengemudi, dan game balapan menyatu secara mulus. Masuki game sandbox multipemain online yang imersif ini dan tentukan jalanmu dalam kota gangster yang mendebarkan. --DAN YANG PALING PENTING JIKA KALIAN TIDAK MAU KETINGGALAN EVENT UPDATE ATAU LAINNYA BISA GABUNG LANGSUNG KE DISCORD FLEX CITY KARENA SEMUANYA DI SHARE DISITU
-      <!-- (TEXTPANJANG KAMU TIDAK DIUBAH) -->
     </p>
 
     <!-- DISCORD -->
@@ -124,9 +134,7 @@
       </a>
     </div>
 
-    <!-- ===========================
-         CAROUSEL FOTO
-         =========================== -->
+    <!-- CAROUSEL -->
     <div class="mt-8 w-full bg-[#0b152c] border border-slate-800 rounded-2xl p-4 shadow-xl">
 
       <div class="relative w-full h-64 overflow-hidden rounded-xl">
@@ -147,9 +155,7 @@
 
     </div>
 
-    <!-- ===========================
-         SESUATU YANG AKAN DATANG
-         =========================== -->
+    <!-- SESUATU YANG AKAN DATANG -->
     <div class="mt-8 w-full bg-[#0b152c] border border-slate-800 rounded-2xl p-6 shadow-xl">
 
       <h2 class="text-2xl font-bold text-center mb-4 bg-gradient-to-r from-purple-300 to-cyan-200 bg-clip-text text-transparent">
@@ -173,10 +179,14 @@
 <div id="modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
   <div class="bg-[#0c182f] max-w-lg w-full rounded-2xl p-6 border border-slate-700 shadow-2xl">
     <h2 id="modalTitle" class="text-2xl font-bold mb-3"></h2>
-    <p id="modalContent" class="text-slate-300 text-sm leading-relaxed whitespace-pre-line"></p>
 
-    <!-- FOTO DALAM MODAL -->
-    <img id="modalImage" src="" class="w-full rounded-xl mt-4 hidden" />
+    <!-- WRAPPER FIX -->
+    <div id="modalContentWrapper">
+      <p id="modalContent" class="text-slate-300 text-sm leading-relaxed whitespace-pre-line"></p>
+
+      <!-- FOTO DALAM MODAL -->
+      <img id="modalImage" src="" class="w-full rounded-xl mt-4 hidden" />
+    </div>
 
     <button onclick="closeNews()" class="mt-6 px-4 py-2 bg-gradient-to-r from-purple-600 to-cyan-400 rounded-lg font-semibold">
       Tutup
